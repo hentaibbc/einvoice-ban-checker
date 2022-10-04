@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-class BarcodeChecker extends NumberChecker
+class NPOBanChecker extends NumberChecker
 {
     protected function name(): string
     {
-        return 'BarCode';
+        return 'NPOBan';
     }
 
     protected function getEndpoint(): string
@@ -16,7 +16,7 @@ class BarcodeChecker extends NumberChecker
 
     protected function validate($data): bool
     {
-        if (!$data['barCode']) {
+        if (!$data['pCode']) {
             return false;
         }
         return true;
@@ -26,9 +26,9 @@ class BarcodeChecker extends NumberChecker
     {
         return array_merge([
             'version'   => '1.0',
-            'action'    => 'bcv',
+            'action'    => 'preserveCodeCheck',
             'appId'     => $this->config('app_id'),
-            'TxID'      => 'BC'.formatDate('YmdHi').sprintf("%'06s", random_int(1, 999999)),
+            'TxID'      => 'NPO'.formatDate('YmdHi').sprintf("%'06s", random_int(1, 999999)),
         ], $data);
     }
 }

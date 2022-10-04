@@ -1,14 +1,14 @@
 <?php
 
-use App\Services\BarcodeChecker;
+use App\Services\NPOBanChecker;
 
 include __DIR__.'/../../bootstrap/app.php';
 include __DIR__.'/../../bootstrap/common.php';
 
-$service = new BarcodeChecker($config['app_id'], $config['api_key'], ($config['curl_log_enable'] ? $logger : null));
+$service = new NPOBanChecker($config['app_id'], $config['api_key'], ($config['curl_log_enable'] ? $logger : null));
 
 $resp = $service->post([
-    'barCode'   => $request->input('barCode'),
+    'pCode'   => $request->input('pCode'),
 ]);
 
 if (($resp['code'] ?? false) != 200) {
