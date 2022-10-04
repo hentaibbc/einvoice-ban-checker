@@ -1,6 +1,8 @@
 # files
 config.php
+config.testing.php
 *.bak*
+.phpunit.result.cache
 
 # folders
 /.git/
