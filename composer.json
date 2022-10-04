@@ -1,0 +1,19 @@
+{
+    "name": "dotech/einvoice-ban-checker",
+    "description": "Check if barcode and NPOban number of einvoice is valid",
+    "type": "project",
+    "license": "Dotech",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tatsuya",
+            "email": "tatsuya@dotech.com.tw"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
