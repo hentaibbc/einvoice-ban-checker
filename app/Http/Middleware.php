@@ -25,7 +25,7 @@ class Middleware
 
         if (count($this->callables)) {
             foreach ($this->callables as $callable) {
-                $next = $callable($request);
+                $callable($request);
             }
         }
     }

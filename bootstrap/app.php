@@ -13,7 +13,9 @@ date_default_timezone_set('Asia/Taipei');
 include __DIR__.'/../vendor/autoload.php';
 
 $config = include __DIR__.'/../config.php';
-$request = new Request();
-$middleware = new Middleware($request);
+
 $logger = new FileLogger($config);
 Handler::make($logger);
+
+$request = new Request();
+$middleware = new Middleware($request);
