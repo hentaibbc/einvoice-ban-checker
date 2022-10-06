@@ -13,8 +13,8 @@ class FileLogger implements Logger
 
     public function addLog($message, $type = null): void
     {
-        $category = $type.'/';
-        $daily_folder = $this->logPath($category.formatDate('Ym'));
+        $folder = $type;
+        $daily_folder = $this->logPath($folder);
 
         if (!file_exists($daily_folder)) {
             mkdir($daily_folder, 0777, true);
@@ -27,7 +27,7 @@ class FileLogger implements Logger
             }
         }
 
-        $file = 'log_'.formatDate('Ymd').'.log';
+        $file = ($this->config['log_prefix'] ?? 'log').'_'.formatDate('Ymd').'.log';
         $fp = fopen($daily_folder.'/'.$file, 'a+');
         if ($fp) {
             fputs($fp, sprintf('%s %s'.PHP_EOL, formatDate('Y-m-d H:i:s'), $message));
