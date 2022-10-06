@@ -27,27 +27,31 @@ class Handler
     public function register(): void
     {
         set_exception_handler([$this, 'handleException']);
-        set_error_handler([$this, 'handleError']);
+        set_error_handler([$this, 'handleError'], E_ALL & ~E_STRICT & ~E_NOTICE & ~E_USER_NOTICE);
     }
 
     public function handleException(Throwable $e): void
     {
         $message = sprintf('(%d) $s at %s line %d', $e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
-        $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace($e->getTrace());
+        $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace($e->getTrace()).PHP_EOL;
 
         $this->logger->addLog($message, 'error');
 
         $this->response($e->getMessage());
+
+        exit;
     }
 
-    public function handleError(int $errno, string $errmsg, ?string $errfile, ?int $errline, ?array $errcontext): void
+    public function handleError(int $errno, string $errmsg, ?string $errfile = '', ?int $errline = 0, ?array $errcontext = []): void
     {
         $message = sprintf('(%d) $s at %s line %d', $errno, $errmsg, $errfile, (int) $errline);
-        $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace(debug_backtrace());
+        $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace(debug_backtrace()).PHP_EOL;
 
         $this->logger->addLog( $message, 'error');
 
         $this->response($errmsg);
+
+        exit;
     }
 
     protected function response($message = ''): void

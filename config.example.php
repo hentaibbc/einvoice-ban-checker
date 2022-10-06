@@ -9,5 +9,7 @@ return [
     'secret'        => '', // Secret for client
 
     // 記錄
-    'log_path'      => __DIR__.'/logs',
+    'log_path'           => __DIR__.'/logs',
+    'log_prefix'         => 'log',
+    'curl_log_enable'    => true,
 ];

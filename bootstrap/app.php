@@ -9,7 +9,7 @@ use App\Loggers\FileLogger;
 
 date_default_timezone_set('Asia/Taipei');
 
-include __DIR__.'/../app/helpers.php';
+// include __DIR__.'/../app/helpers.php';
 include __DIR__.'/../vendor/autoload.php';
 
 $config = include __DIR__.'/../config.php';
