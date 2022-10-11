@@ -18,7 +18,7 @@ class Request
             'get'     => $_GET,
             'input'   => $_REQUEST,
             'header'  => $this->parseHeaders(),
-            'raw'     => file_get_contents('php://input'),
+            'raw'     => trim(file_get_contents('php://input'), "\n"),
         ];
 
         $this->contentType = $this->parseContentType();
