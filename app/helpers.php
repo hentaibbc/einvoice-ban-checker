@@ -12,7 +12,7 @@ if (! function_exists('buildQuery') ) {
 if (! function_exists('responseJson') ) {
     function responseJson(array $data = [], int $code = 200)
     {
-        header('HTTP '.$code.' '.statusMessage($code));
+        header('HTTP/1.0 '.$code.' '.statusMessage($code));
         header('Content-Type: application/json');
 
         echo json_encode($data);
