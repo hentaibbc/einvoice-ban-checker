@@ -27,8 +27,12 @@ class Request
 
     protected function parseContentType()
     {
-        if (isset($_SERVER['HTTP_CONTENT_TYPE'])) {
-            if (preg_match('#^application/json#i', trim($_SERVER['HTTP_CONTENT_TYPE']))) {
+        $key = 'HTTP_CONTENT_TYPE';
+        if (isset($_SERVER['CONTENT_TYPE'])) {
+            $key = 'CONTENT_TYPE';
+        }
+        if (isset($_SERVER[$key])) {
+            if (preg_match('#^application/json#i', trim($_SERVER[$key]))) {
                 return 'json';
             }
         }
