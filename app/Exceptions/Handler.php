@@ -32,7 +32,7 @@ class Handler
 
     public function handleException(Throwable $e): void
     {
-        $message = sprintf('(%d) $s at %s line %d', $e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        $message = sprintf('(%d) %s at %s line %d', $e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace($e->getTrace()).PHP_EOL;
 
         $this->logger->addLog($message, 'error');
@@ -44,7 +44,7 @@ class Handler
 
     public function handleError(int $errno, string $errmsg, ?string $errfile = '', ?int $errline = 0, ?array $errcontext = []): void
     {
-        $message = sprintf('(%d) $s at %s line %d', $errno, $errmsg, $errfile, (int) $errline);
+        $message = sprintf('(%d) %s at %s line %d', $errno, $errmsg, $errfile, (int) $errline);
         $message .= str_repeat(PHP_EOL, 2).$this->transformBacktrace(debug_backtrace()).PHP_EOL;
 
         $this->logger->addLog( $message, 'error');
