@@ -6,5 +6,5 @@ if (file_exists($_include)) {
     exit;
 }
 
-header('HTTP 404 Not Found');
+header('HTTP/1.0 404 Not Found');
 exit;
